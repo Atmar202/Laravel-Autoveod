@@ -14,12 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::resource('/autoveods', 'AutoveodController');
-/*
-Route::get('/autoveods', 'AutoveodController@index');
-Route::get('/autoveods/create', 'AutoveodController@create');
-Route::get('/autoveods/edit', 'AutoveodController@edit');
-Route::post('/autoveods/create', 'AutoveodController@store');
-*/
+
+Route::put('/autoveods/{autoveod}/tehtud', 'AutoveodController@tehtud')->name('autoveod.tehtud');
+Route::delete('/autoveods/{autoveod}/tegemata', 'AutoveodController@tegemata')->name('autoveod.tegemata');
 
 Route::get('/', function () {
     return view('welcome');
