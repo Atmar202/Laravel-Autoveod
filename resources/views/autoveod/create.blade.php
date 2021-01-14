@@ -1,17 +1,26 @@
-@extends('autoveods.layout')
+@extends('autoveod.layout')
 
 @section('content')
-    <div>
-        <h1>Tellimuse lisamine</h1>
-        <form method="post" action="/autoveod/create">
+<div class="flex justify-between border-b pb-4 px-4">
+        <h1 class="text-2xl pb-4">Tellimuse lisamine</h1>
+        <a href="{{route('autoveods.index')}}" class="mx-5 py-2 text-gray-400 cursor-pointer text-white">
+        <span class="fas fa-arrow-left"></span></a>
+        </div>
+        <x alert />
+        <form method="post" action="{{route('autoveods.store')}}" class="py-5">
         @csrf
-        <input type="text" name="algus" />
-        <input type="text" name="otspunkt" />
-        <input type="text" name="aeg" />
-        <input type="submit" value="Create" />
-    </form>
-</div>
-@endsection
+        <div class="py-1">
+            <input type="text" name="algus" class="py-2 px-2 border rounded" placeholder="Algus" />
+        </div>
+        <div class="py-1">
+            <input type="text" name="otspunkt" class="py-2 px-2 border rounded" placeholder="Otspunkt" />
+        </div>
+        <div class="py-1">
+            <input type="text" name="aeg" class="py-2 px-2 border rounded" placeholder="Aeg" />
+        </div>
 
-</body>
-</html>
+        <div class="py-1">
+            <input type="submit" value="Create" class="p-2 border rounded" />
+        </div>
+</form>
+@endsection

@@ -13,11 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::resource('/autoveods', 'AutoveodController');
-Route::get('/autoveods', 'App\Http\Controllers\AutoveodController@index');
-Route::get('/autoveods/create', 'App\Http\Controllers\AutoveodController@create');
-Route::get('/autoveods/edit', 'App\Http\Controllers\AutoveodController@edit');
-Route::post('/autoveods/create', 'App\Http\Controllers\AutoveodController@store');
+Route::resource('/autoveods', 'AutoveodController');
+/*
+Route::get('/autoveods', 'AutoveodController@index');
+Route::get('/autoveods/create', 'AutoveodController@create');
+Route::get('/autoveods/edit', 'AutoveodController@edit');
+Route::post('/autoveods/create', 'AutoveodController@store');
+*/
 
 Route::get('/', function () {
     return view('welcome');
