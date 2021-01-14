@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/autoveods', 'App\Http\Controllers\AutoveodController@index');
 Route::get('/autoveods/create', 'App\Http\Controllers\AutoveodController@create');
 Route::get('/autoveods/edit', 'App\Http\Controllers\AutoveodController@edit');
+Route::post('/autoveods/create', 'App\Http\Controllers\AutoveodController@store');
 
 Route::get('/', function () {
     return view('welcome');

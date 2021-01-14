@@ -20,7 +20,7 @@ class CreateAutoveodsTable extends Migration
             $table->string('aeg', 50); // Soovitav Aeg
             $table->integer('nr')->default(-1); // Auto Number
             $table->string('juht', 50);
-            $table->boolean('valmis');
+            $table->boolean('valmis')->default(false);
             $table->timestamps();
         });
     }
