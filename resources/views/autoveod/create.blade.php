@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tellimuse lisamine</title>
-</head>
-<body>
+@extends('autoveods.layout')
+
+@section('content')
     <div>
         <h1>Tellimuse lisamine</h1>
         <form method="post" action="/autoveod/create">
@@ -16,6 +11,7 @@
         <input type="submit" value="Create" />
     </form>
 </div>
+@endsection
 
 </body>
 </html>
