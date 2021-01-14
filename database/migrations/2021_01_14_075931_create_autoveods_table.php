@@ -15,12 +15,12 @@ class CreateAutoveodsTable extends Migration
     {
         Schema::create('autoveods', function (Blueprint $table) {
             $table->id();
-            $table->string('algus');
-            $table->string('otspunkt');
-            $table->string('aeg'); // Soovitav Aeg
-            $table->integer('nr'); // Auto Number
-            $table->string('juht');
-            $table->string('valmis');
+            $table->string('algus', 50);
+            $table->string('otspunkt', 50);
+            $table->string('aeg', 50); // Soovitav Aeg
+            $table->integer('nr')->default(-1); // Auto Number
+            $table->string('juht', 50);
+            $table->boolean('valmis');
             $table->timestamps();
         });
     }
