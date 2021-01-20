@@ -17,6 +17,7 @@ Route::resource('/autoveods', 'AutoveodController');
 
 Route::put('/autoveods/{autoveod}/tehtud', 'AutoveodController@tehtud')->name('autoveod.tehtud');
 Route::delete('/autoveods/{autoveod}/tegemata', 'AutoveodController@tegemata')->name('autoveod.tegemata');
+Route::delete('/autoveods/{autoveod}/probleem', 'AutoveodController@probleem')->name('autoveod.probleem');
 
 Route::get('/', function () {
     return view('welcome');

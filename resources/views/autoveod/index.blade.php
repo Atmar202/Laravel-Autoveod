@@ -8,17 +8,24 @@
 <span class="fas fa-plus-circle"></span></a>
 </div>
     <ul>
-    <x alert />
+    <x-alert />
         @forelse($autoveods as $autoveod)
         <li class="flex justify-between p-2">
         <div>
         @include('autoveod.valmisButton')
         </div>
-
-        @if($autoveod->valmis)
-            <p class="line-through">{{$autoveod->algus}} | {{$autoveod->otspunkt}} | {{$autoveod->aeg}} | {{$autoveod->nr}} | {{$autoveod->juht}}</p>
+        @if($autoveod->nr < 1)
+        <?php $value = "Pole";?>
             @else
-            <p>{{$autoveod->algus}} | {{$autoveod->otspunkt}} | {{$autoveod->aeg}} | {{$autoveod->nr}} | {{$autoveod->juht}}</p>
+            <?php $value = $autoveod->nr;?>
+            @endif
+    
+        @if($autoveod->valmis)
+            <p class="line-through">{{$autoveod->algus}} | {{$autoveod->otspunkt}} | {{$autoveod->aeg}} | {{$value}} | {{$autoveod->juht}}</p>
+            @elseif($autoveod->nr < 1 && $autoveod->juht == "Puudub")
+            <p class="text-red-600">{{$autoveod->algus}} | {{$autoveod->otspunkt}} | {{$autoveod->aeg}} | {{$value}} | {{$autoveod->juht}}</p>
+            @else
+            <p>{{$autoveod->algus}} | {{$autoveod->otspunkt}} | {{$autoveod->aeg}} | {{$value}} | {{$autoveod->juht}}</p>
             @endif
 
             <div>
@@ -38,7 +45,7 @@
                 </div>
             </li>
             @empty
-            <p>Veotellimusi pole.</p>
+            <p class="pt-2">Veotellimusi pole.</p>
             @endif
             <ul>
 @endsection

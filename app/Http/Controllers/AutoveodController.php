@@ -41,7 +41,12 @@ class AutoveodController extends Controller
     public function tegemata(Autoveod $autoveod)
     {
         $autoveod->update(['valmis' => false]);
-        return redirect()->back()->with('message', 'Veotellimus on märgitud tegemata.');
+        return redirect()->back()->with('error', 'Veotellimus on märgitud tegemata.');
+    }
+    public function probleem(Autoveod $autoveod)
+    {
+        $autoveod->update(['valmis' => false]);
+        return redirect()->back()->with('error', 'Veotellimust ei saa lisada, sest sellel puudub auto number või juht.');
     }
     public function tehtud(Autoveod $autoveod)
     {
@@ -51,10 +56,14 @@ class AutoveodController extends Controller
     public function destroy(Autoveod $autoveod)
     {
         $autoveod->delete();
-        return redirect()->back()->with('message', 'Veotellimus kustutatud!');
+        return redirect()->back()->with('error', 'Veotellimus kustutatud!');
     }
 
     // Todo: Valmis teha show ja edit vaade kujundus
+    // cursor pointer juhi ja autonumbri väärtusele indeksis, mis viib oma edit vaadele (2 edit vaadet)
+    // Show vaades on olemas väärtus (Valmis) mis läbi if'i paneb jah või ei
+    // Kui proovida valmis sättida päringu millel puudub autonumber või juht, siis annab veebilehe alerti(js)
+    // if nr<1, punane värv ning kategoriseering eraldi
 
     // Vedusid millel on juht või autonumber määramata võiksid olla värvilised (punane).
     // Vedusid millel on juht või autonumber määramata ei saa määrata valmiks.
