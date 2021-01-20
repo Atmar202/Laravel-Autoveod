@@ -40,6 +40,16 @@ class AutoveodController extends Controller
         $autoveod->update(['juht' => $request->juht]);
         return redirect(route('autoveods.index'))->with('message', 'Muudatused salvestati!');
     }
+    public function updateNumber(AutoveodCreateRequest $request, Autoveod $autoveod)
+    {
+        $autoveod->update(['nr' => $request->nr]);
+        return redirect(route('autoveods.index'))->with('message', 'Auto number salvestati!');
+    }
+    public function updateDriver(AutoveodCreateRequest $request, Autoveod $autoveod)
+    {
+        $autoveod->update(['juht' => $request->juht]);
+        return redirect(route('autoveods.index'))->with('message', 'Juht salvestati!');
+    }
     public function tegemata(Autoveod $autoveod)
     {
         $autoveod->update(['valmis' => false]);
@@ -48,7 +58,7 @@ class AutoveodController extends Controller
     public function probleem(Autoveod $autoveod)
     {
         $autoveod->update(['valmis' => false]);
-        return redirect()->back()->with('error', 'Veotellimust ei saa lisada, sest sellel puudub auto number või juht.');
+        return redirect()->back()->with('error', 'Veotellimust ei saa märkida valmis, sest sellel puudub auto number või juht.');
     }
     public function tehtud(Autoveod $autoveod)
     {
@@ -60,14 +70,32 @@ class AutoveodController extends Controller
         $autoveod->delete();
         return redirect()->back()->with('error', 'Veotellimus kustutatud!');
     }
-
-    // Todo: Valmis teha show ja edit vaade kujundus (editis saab ka lisada autonumbri ja juhi)
-    // cursor pointer juhi ja autonumbri väärtusele indeksis, mis viib oma edit vaadele (2 edit vaadet)
-    // Show vaades on olemas väärtus (Valmis) mis läbi if'i paneb jah või ei
+    public function editNumber(Autoveod $autoveod) // Auto numbri muutmiseks
+    {
+        return view('autoveod.editNumber', compact('autoveod'));
+    }
+    public function editDriver(Autoveod $autoveod) // Juhi muutmiseks
+    {
+        return view('autoveod.editDriver', compact('autoveod'));
+    }
 
     // Vedusid millel on juht või autonumber määramata võiksid olla värvilised (punane).
     // Vedusid millel on juht või autonumber määramata ei saa määrata valmiks.
     // Veole saab määrata juhi või autonumbri indeksis
     // Show vaadel peaks olema eraldi nupp (nagu edit'il, create'il, jne)
-    // Eraldi paigutada veod lehele, mis pole veel valmiks määratud.
+    // Eraldi paigutada veod lehele, mis pole veel valmis määratud.
+
+    /*
+Andmetabel veod: (id, algus, ots, aeg, autonr, juht, valmis)
+
+* Koosta tabel. Loo SQL-laused tellimuse sisestamiseks (algus, ots, aeg), 
+tellimusele autonumbri määramiseks, tellimusele juhi nime määramiseks.
+
+* Koosta leht veotellimuse sisestamiseks (algus- ja otspunkt, soovitav aeg). 
+Koosta leht tellitud, kuid ilma juhita vedude nägemiseks. Võimalda veole määrata juht.
+
+* Näita lehel vedusid, mille juht või autonumber määramata. Võimalda neid määrata. 
+Juhi ja autonumbriga vedude puhul näita eraldi need veod, mis pole veel valmiks määratud, 
+võimalda tehtuks määrata.
+    */
 }

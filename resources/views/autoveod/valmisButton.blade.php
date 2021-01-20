@@ -4,7 +4,7 @@
             @csrf
             @method('delete')
         </form>
-        @elseif($autoveod->nr < 1 && $autoveod->juht == "Puudub")
+        @elseif($autoveod->nr < 1 || $autoveod->juht == "Puudub")
         <span onclick="event.preventDefault();document.getElementById('form-probleem-{{$autoveod->id}}').submit()" class="fas fa-check text-gray-300 cursor-pointer px-4"></span>
             <form style="display:none" id="{{'form-probleem-'.$autoveod->id}}" method="post" action="{{route('autoveod.probleem', $autoveod->id)}}">
             @csrf

@@ -11,6 +11,9 @@
     <x-alert />
         @forelse($autoveods as $autoveod)
         <li class="flex justify-between p-2">
+        @if($autoveod->juht == '')
+        <?php $autoveod->juht = "Puudub";?>
+        @endif
         <div>
         @include('autoveod.valmisButton')
         </div>
@@ -19,13 +22,13 @@
             @else
             <?php $value = $autoveod->nr;?>
             @endif
-    
+
         @if($autoveod->valmis)
-            <p class="line-through">{{$autoveod->algus}} | {{$autoveod->otspunkt}} | {{$autoveod->aeg}} | {{$value}} | {{$autoveod->juht}}</p>
-            @elseif($autoveod->nr < 1 && $autoveod->juht == "Puudub")
-            <p class="text-red-600">{{$autoveod->algus}} | {{$autoveod->otspunkt}} | {{$autoveod->aeg}} | {{$value}} | {{$autoveod->juht}}</p>
+            <p class="line-through">{{$autoveod->algus}} | {{$autoveod->otspunkt}} | {{$autoveod->aeg}} | <a class="cursor-pointer" href="{{route('autoveod.editNumber', $autoveod->id)}}">{{$value}}</a> | <a class="cursor-pointer" href="{{route('autoveod.editDriver', $autoveod->id)}}">{{$autoveod->juht}}</a></p>
+            @elseif($autoveod->nr < 1 || $autoveod->juht == "Puudub")
+            <p class="text-red-600">{{$autoveod->algus}} | {{$autoveod->otspunkt}} | {{$autoveod->aeg}} | <a class="cursor-pointer" href="{{route('autoveod.editNumber', $autoveod->id)}}">{{$value}}</a> | <a class="cursor-pointer" href="{{route('autoveod.editDriver', $autoveod->id)}}">{{$autoveod->juht}}</a></p>
             @else
-            <p>{{$autoveod->algus}} | {{$autoveod->otspunkt}} | {{$autoveod->aeg}} | {{$value}} | {{$autoveod->juht}}</p>
+            <p>{{$autoveod->algus}} | {{$autoveod->otspunkt}} | {{$autoveod->aeg}} | <a class="cursor-pointer" href="{{route('autoveod.editNumber', $autoveod->id)}}">{{$value}}</a> | <a class="cursor-pointer" href="{{route('autoveod.editDriver', $autoveod->id)}}">{{$autoveod->juht}}</a></p>
             @endif
 
             <div>
